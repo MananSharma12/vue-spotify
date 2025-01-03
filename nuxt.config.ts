@@ -5,7 +5,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     'shadcn-nuxt',
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    '@pinia/nuxt'
   ],
   shadcn: {
     /**
@@ -17,5 +18,12 @@ export default defineNuxtConfig({
      * @default "./components/ui"
      */
     componentDir: './components/ui'
-  }
+  },
+  typescript: {
+    typeCheck: true,
+    strict: true,
+  },
+  pinia: {
+    storesDirs: ['./stores/**'],
+  },
 })
