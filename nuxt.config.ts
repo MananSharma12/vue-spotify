@@ -3,7 +3,15 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   css: ['~/assets/css/main.css'],
   devtools: { enabled: true },
-  modules: ['@pinia/nuxt', '@nuxt/image', '@nuxt/icon'],
+  modules: [
+    '@pinia/nuxt',
+    '@nuxt/image',
+    '@nuxt/icon',
+    '@vee-validate/nuxt',
+  ],
+  plugins: [
+    '~/plugins/vee-validate.ts'
+  ],
   typescript: {
     typeCheck: true,
     strict: true,
@@ -17,4 +25,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  veeValidate: {
+    autoImports: true,
+  }
 })
