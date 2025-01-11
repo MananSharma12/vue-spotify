@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { useModalStore } from '@/stores/modal';
+
+function toggleAuthModal() {
+  const modalStore = useModalStore()
+  modalStore.isOpen = !modalStore.isOpen
+}
+</script>
+
 <template>
   <header id="header" class="bg-gray-700">
     <nav class="container mx-auto flex justify-start items-center py-5 px-4">
@@ -8,7 +17,7 @@
         <ul class="flex flex-row mt-1">
           <!-- Navigation Links -->
           <li>
-            <a class="px-2 text-white" href="#">Login / Register</a>
+            <a class="px-2 text-white cursor-pointer" @click.prevent="toggleAuthModal">Login / Register</a>
           </li>
           <li>
             <a class="px-2 text-white" href="#">Manage</a>
