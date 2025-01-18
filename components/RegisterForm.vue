@@ -1,18 +1,32 @@
 <script setup lang="ts">
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+
 const regInSubmission = ref(false);
 const regShowAlert = ref(false);
 const regAlertVariant = ref('bg-blue-500');
 const regAlertMessage = ref("Please wait! Your account in being created");
+const auth = useFirebaseAuth()!;
 
-function register(values: Record<string, string>) {
+async function register(values: Record<string, string>) {
   regShowAlert.value = true;
   regInSubmission.value = true;
   regAlertVariant.value = 'bg-blue-500';
-  regAlertMessage.value = "Please wait! Your account in being created"
 
+  let userCredential = null;
+
+  try {
+    userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
+  } catch(error) {
+    regInSubmission.value = false;
+    regAlertVariant.value = 'bg-red-500';
+    regAlertMessage.value = 'An unexpected error occurred. Please try again later.';
+    return;
+  }
+
+  regAlertMessage.value = "Please wait! Your account in being created"
   regAlertVariant.value = 'bg-green-500';
   regAlertMessage.value = "Success! Your Account has been created"
-  console.log(values)
+  console.log(userCredential)
 }
 </script>
 
@@ -55,7 +69,7 @@ function register(values: Record<string, string>) {
           placeholder="Enter Email"
           :rules="{
             required: true,
-            email: true,
+            email: true
           }"
       />
       <ErrorMessage
@@ -73,7 +87,7 @@ function register(values: Record<string, string>) {
           :rules="{
             required: true,
             min_value: 18,
-            max_value: 60,
+            max_value: 60
           }"
       />
       <ErrorMessage
@@ -90,9 +104,8 @@ function register(values: Record<string, string>) {
           class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
           placeholder="Password"
           :rules="{
-                    required: true,
-
-                  }"
+            required: true
+          }"
       />
       <ErrorMessage
           name="password"

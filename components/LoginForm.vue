@@ -9,10 +9,8 @@ function login(values: Record<string, string>) {
   loginInSubmission.value = true;
   loginAlertVariant.value = 'bg-blue-500';
   loginAlertMessage.value = "Please wait! We are loggin you in."
-
   loginAlertVariant.value = 'bg-green-500';
   loginAlertMessage.value = "Success! You are now logged in."
-  console.log(values)
 }
 </script>
 

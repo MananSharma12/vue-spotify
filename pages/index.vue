@@ -18,7 +18,6 @@
       </div>
     </div>
 
-
     <NuxtImg
         class="relative block mx-auto mt-5 -mb-20 w-auto max-w-full"
         src="assets/img/introduction-music.png"
@@ -33,7 +32,7 @@
       <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
         <span class="card-title">Songs</span>
         <!-- Icon -->
-        <i class="fa fa-headphones-alt float-right text-green-400 text-xl"></i>
+        <Icon name="ic:baseline-headphones" class="float-right text-green-400 text-xl" />
       </div>
       <!-- Playlist -->
       <ol id="playlist">
@@ -258,8 +257,8 @@
             class="absolute -top-2.5 -ml-2.5 text-gray-800 text-lg"
             style="left: 50%"
         >
-            <i class="fas fa-circle"></i>
-          </span>
+          <Icon name="ic:baseline-circle" />
+        </span>
         <!-- Player Progress Bar-->
         <span
             class="block h-2 rounded bg-gradient-to-r from-green-500 to-green-400"
