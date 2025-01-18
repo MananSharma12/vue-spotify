@@ -19,7 +19,7 @@ async function register(values: Record<string, string>) {
       age: values.age,
       country: values.country,
     })
-  } catch(error) {
+  } catch (error) {
     regInSubmission.value = false;
     regAlertVariant.value = 'bg-red-500';
     regAlertMessage.value = 'An unexpected error occurred. Please try again later.';

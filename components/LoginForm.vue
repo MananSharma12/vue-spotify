@@ -1,14 +1,30 @@
 <script setup lang="ts">
+import { useModalStore } from '@/stores/modal';
+const modalStore = useModalStore()
+
+const { loginUser } = useAuth()
+
 const loginInSubmission = ref(false);
 const loginShowAlert = ref(false);
 const loginAlertVariant = ref('bg-blue-500');
 const loginAlertMessage = ref("Please wait! We are loggin you in.");
 
-function login(values: Record<string, string>) {
+async function login(values: Record<string, string>) {
   loginShowAlert.value = true;
   loginInSubmission.value = true;
   loginAlertVariant.value = 'bg-blue-500';
   loginAlertMessage.value = "Please wait! We are loggin you in."
+
+  try {
+    await loginUser(values.email, values.password);
+  } catch (error) {
+    loginInSubmission.value = false;
+    loginAlertVariant.value = 'bg-red-500';
+    loginAlertMessage.value = 'Invalid Login Details';
+    return;
+  }
+
+  loginInSubmission.value = false;
   loginAlertVariant.value = 'bg-green-500';
   loginAlertMessage.value = "Success! You are now logged in."
 }
