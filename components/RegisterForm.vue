@@ -1,21 +1,24 @@
 <script setup lang="ts">
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+const { registerUser } = useAuth()
 
 const regInSubmission = ref(false);
 const regShowAlert = ref(false);
 const regAlertVariant = ref('bg-blue-500');
 const regAlertMessage = ref("Please wait! Your account in being created");
-const auth = useFirebaseAuth()!;
 
 async function register(values: Record<string, string>) {
   regShowAlert.value = true;
   regInSubmission.value = true;
   regAlertVariant.value = 'bg-blue-500';
 
-  let userCredential = null;
-
   try {
-    userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
+    await registerUser({
+      email: values.email,
+      password: values.password,
+      name: values.name,
+      age: values.age,
+      country: values.country,
+    })
   } catch(error) {
     regInSubmission.value = false;
     regAlertVariant.value = 'bg-red-500';
@@ -26,7 +29,6 @@ async function register(values: Record<string, string>) {
   regAlertMessage.value = "Please wait! Your account in being created"
   regAlertVariant.value = 'bg-green-500';
   regAlertMessage.value = "Success! Your Account has been created"
-  console.log(userCredential)
 }
 </script>
 
