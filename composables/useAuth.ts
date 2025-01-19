@@ -34,6 +34,7 @@ export const useAuth = () => {
     }
 
     const logoutUser = async () => {
+        navigateTo('/')
         return await signOut(auth)
     }
 

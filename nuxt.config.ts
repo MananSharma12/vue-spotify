@@ -10,6 +10,11 @@ export default defineNuxtConfig({
     '@vee-validate/nuxt',
     'nuxt-vuefire'
   ],
+  router: {
+    options: {
+      linkExactActiveClass: 'font-bold',
+    }
+  },
   typescript: {
     typeCheck: true,
     strict: true,

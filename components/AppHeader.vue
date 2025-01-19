@@ -14,7 +14,12 @@ function toggleAuthModal() {
 <template>
   <header id="header" class="bg-gray-700">
     <nav class="container mx-auto flex justify-start items-center py-5 px-4">
-      <a class="text-white font-bold uppercase text-2xl mr-4" href="#">Music</a>
+      <NuxtLink
+          to="/"
+          class="text-white font-bold uppercase text-2xl mr-4"
+      >
+        Music
+      </NuxtLink>
 
       <div class="flex flex-grow items-center">
         <!-- Primary Navigation -->
@@ -28,7 +33,12 @@ function toggleAuthModal() {
           </li>
           <template v-else>
             <li>
-              <a class="px-2 text-white cursor-pointer" href="#">Manage</a>
+              <NuxtLink
+                  to="/manage"
+                  class="px-2 text-white cursor-pointer"
+              >
+                Manage
+              </NuxtLink>
             </li>
             <li>
               <a class="px-2 text-white cursor-pointer" @click.prevent="logoutUser">Logout</a>
