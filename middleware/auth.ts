@@ -1,5 +1,3 @@
-import { useModalStore } from "~/stores/modal";
-
 export default defineNuxtRouteMiddleware(async (to) => {
     const user = await getCurrentUser()
 

@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { useFirebaseAuth } from 'vuefire'
-import { onAuthStateChanged } from 'firebase/auth'
 import { useUserStore } from '~/stores/user'
 
 const auth = useFirebaseAuth()!
 const userStore = useUserStore()
 
 onMounted(() => {
-  const unsubscribe = onAuthStateChanged(auth, (user) => {
+  const unsubscribe = auth.onAuthStateChanged((user) => {
     userStore.setUserLoggedIn(!!user)
   })
   onUnmounted(() => unsubscribe())

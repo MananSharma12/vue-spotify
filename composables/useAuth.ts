@@ -1,10 +1,10 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
-import { getFirestore, doc, setDoc } from 'firebase/firestore'
-import { useFirebaseAuth } from 'vuefire'
+import { doc, setDoc } from 'firebase/firestore'
+import { useFirebaseAuth, useFirestore } from 'vuefire'
 
 export const useAuth = () => {
     const auth = useFirebaseAuth()!
-    const db = getFirestore()
+    const db = useFirestore()
 
     const registerUser = async (userData: {
         email: string
